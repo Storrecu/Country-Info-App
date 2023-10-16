@@ -2,16 +2,16 @@
 
 const callToApi = () => {
   // Llamamos a la API
-  return fetch('https://swapi.dev/api/people/5') // Este 5 es el id de Leia Skywalker
+  return fetch(
+    'https://restcountries.com/v3.1/all?fields=name,capital,flag,continents'
+  )
     .then((response) => response.json())
     .then((response) => {
-      // Cuando responde la API podemos limpiar los datos aquí
       const result = {
-        name: response.name,
-        birthYear: response.birth_year,
-        height: response.height,
-        mass: response.mass,
-        eyeColor: response.eye_color,
+        img: response.flag,
+        name: response.name.official,
+        capital: response.capital,
+        continents: response.continents,
       };
       return result;
     });

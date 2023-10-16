@@ -7,12 +7,12 @@ const callToApi = () => {
   )
     .then((response) => response.json())
     .then((response) => {
-      const result = {
-        img: response.flag,
-        name: response.name.official,
-        capital: response.capital,
-        continents: response.continents,
-      };
+      const result = response.map((country) => ({
+        img: country.flag,
+        name: country.name.official,
+        capital: country.capital,
+        continents: country.continents,
+      }));
       return result;
     });
 };

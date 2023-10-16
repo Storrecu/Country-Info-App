@@ -17,6 +17,10 @@ function App() {
     });
   }, []);
   //handlers from events
+  const handleFormSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
   const handleFilterCpuntry = (ev) => {
     setinputFilterCountry(ev.target.value);
   };
@@ -38,12 +42,12 @@ function App() {
           : true
       )
       .map((eachCountry, i) => (
-        <li key={i}>
-          <p>{eachCountry.img}</p>
-          <p>{eachCountry.name}</p>
-          <p>{eachCountry.capital}</p>
-          <p>{eachCountry.continents}</p>
-          <span>X</span>
+        <li key={i} className="list-child">
+          <p className="list-child-info">{eachCountry.img}</p>
+          <p className="list-child-info">{eachCountry.name}</p>
+          <p className="list-child-info">{eachCountry.capital}</p>
+          <p className="list-child-info">{eachCountry.continents}</p>
+          <span className="list-child-cross">X</span>
         </li>
       ));
   };
@@ -51,48 +55,57 @@ function App() {
   //html
   return (
     <>
-      <header>
-        <h1>Country Info App</h1>
-        <p>
+      <header className="header">
+        <h1 className="header-title">Country Info App</h1>
+        <p className="header-info">
           Explore information about countries, capitals ans flags. Add new
           countries and filter throught the list!
         </p>
       </header>
-      <section>
-        <form>
-          <fieldset htmlFor="">
+      <section className="forms">
+        <form className="forms-filter" onSubmit={handleFormSubmit}>
+          <label htmlFor="" className="forms-filter-title">
             Filters
-            <label htmlFor="">By Country</label>
-            <input
-              type="text"
-              placeholder="Spain..."
-              value={inputFilterCountry}
-              onChange={handleFilterCpuntry}
-            />
-            <label htmlFor="">By Continent</label>
-            <select name="" id="" onChange={handleFilterContinent}>
-              <option value="">All</option>
-              <option value="Adrica">Africa</option>
-              <option value="North America">North America</option>
-              <option value="South America">South America</option>
-              <option value="Europe">Europe</option>
-              <option value="Asia">Asia</option>
-              <option value="Oceania">Oceania</option>
-            </select>
-          </fieldset>
+          </label>
+          <label htmlFor="" className="forms-filter-title-one">
+            By Country{' '}
+          </label>
+          <input
+            type="text"
+            placeholder="Spain..."
+            value={inputFilterCountry}
+            onChange={handleFilterCpuntry}
+          />
+          <label htmlFor="" className="forms-filter-title-two">
+            By Continent
+          </label>
+          <select
+            name=""
+            id=""
+            value={selectedContinent}
+            onChange={handleFilterContinent}
+          >
+            <option value="">All</option>
+            <option value="Adrica">Africa</option>
+            <option value="North America">North America</option>
+            <option value="South America">South America</option>
+            <option value="Europe">Europe</option>
+            <option value="Asia">Asia</option>
+            <option value="Oceania">Oceania</option>
+          </select>
         </form>
-        <form>
-          <fieldset htmlFor="">
+        <form className="forms-add" onSubmit={handleFormSubmit}>
+          <label htmlFor="" className="forms-add-title">
             Add Country
-            <input type="text" placeholder="Country name" />
-            <input type="text" placeholder="Capital" />
-            <input type="text" placeholder="Flag icon" />
-            <input type="text" placeholder="Continent" />
-            <button>Add Country</button>
-          </fieldset>
+          </label>
+          <input type="text" placeholder="Country name" />
+          <input type="text" placeholder="Capital" />
+          <input type="text" placeholder="Flag icon" />
+          <input type="text" placeholder="Continent" />
+          <button>Add Country</button>
         </form>
       </section>
-      <ul>{renderCountryList()}</ul>
+      <ul className="list">{renderCountryList()}</ul>
     </>
   );
 }

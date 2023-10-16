@@ -1,17 +1,73 @@
 //estilos generales
 
-// div {
-//   height: 100vh;
-// }
-
-.light {
-  background-color: lightblue;
+* {
+  padding: 0;
+  margin: 0.5rem;
+  box-sizing: border-box;
 }
 
-.dark {
-  background-color: darkblue;
+.header {
+  text-align: center;
+  background-color: #6ac066;
+  color: white;
+  border-radius: 5px;
+  &-title {
+    padding: 1rem;
+  }
+  &-info {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
 }
 
-.collapsed {
-  display: none;
+.forms {
+  display: flex;
+  width: 100%;
+  &-filter {
+    border: 1px solid black;
+    border-radius: 5px;
+    display: block;
+    width: 40%;
+    &-title {
+      display: block;
+      font-weight: bolder;
+    }
+  }
+  &-add {
+    border: 1px solid black;
+    border-radius: 5px;
+    display: block;
+    &-title {
+      display: block;
+      font-weight: bolder;
+    }
+  }
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  &-child {
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 20%;
+    position: relative;
+    &-info {
+      text-align: center;
+    }
+    &-cross {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 5px;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+  }
 }

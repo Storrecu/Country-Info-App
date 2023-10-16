@@ -7,6 +7,8 @@ import '../styles/App.scss';
 function App() {
   //states
   const [dataCountry, setDataCountry] = useState([]);
+  const [inputFilterCountry, setinputFilterCountry] = useState('');
+  const [selectedContinent, setSelectedContinent] = useState('');
 
   //effects
   useEffect(() => {
@@ -15,17 +17,35 @@ function App() {
     });
   }, []);
   //handlers from events
+  const handleFilterCpuntry = (ev) => {
+    setinputFilterCountry(ev.target.value);
+  };
+  const handleFilterContinent = (ev) => {
+    setSelectedContinent(ev.target.value);
+  };
 
   //renders
   const renderCountryList = () => {
-    return dataCountry.map((eachCountry, i) => (
-      <li key={i}>
-        <img src={eachCountry.img} alt={eachCountry.name} />
-        <p>{eachCountry.name}</p>
-        <p>{eachCountry.capital}</p>
-        <p>{eachCountry.continents}</p>
-      </li>
-    ));
+    return dataCountry
+      .filter((eachCountry) =>
+        eachCountry.name
+          .toLowerCase()
+          .includes(inputFilterCountry.toLowerCase())
+      )
+      .filter((eachCountry) =>
+        selectedContinent
+          ? eachCountry.continents.includes(selectedContinent)
+          : true
+      )
+      .map((eachCountry, i) => (
+        <li key={i}>
+          <p>{eachCountry.img}</p>
+          <p>{eachCountry.name}</p>
+          <p>{eachCountry.capital}</p>
+          <p>{eachCountry.continents}</p>
+          <span>X</span>
+        </li>
+      ));
   };
 
   //html
@@ -40,17 +60,36 @@ function App() {
       </header>
       <section>
         <form>
-          <label htmlFor="">Filters</label>
-          <input type="text" />
-          <select name="" id="">
-            <option value="">All</option>
-            <option value="">Africa</option>
-            <option value="">North America</option>
-            <option value="">South America</option>
-            <option value="">Europe</option>
-            <option value="">Asia</option>
-            <option value="">Oceania</option>
-          </select>
+          <fieldset htmlFor="">
+            Filters
+            <label htmlFor="">By Country</label>
+            <input
+              type="text"
+              placeholder="Spain..."
+              value={inputFilterCountry}
+              onChange={handleFilterCpuntry}
+            />
+            <label htmlFor="">By Continent</label>
+            <select name="" id="" onChange={handleFilterContinent}>
+              <option value="">All</option>
+              <option value="Adrica">Africa</option>
+              <option value="North America">North America</option>
+              <option value="South America">South America</option>
+              <option value="Europe">Europe</option>
+              <option value="Asia">Asia</option>
+              <option value="Oceania">Oceania</option>
+            </select>
+          </fieldset>
+        </form>
+        <form>
+          <fieldset htmlFor="">
+            Add Country
+            <input type="text" placeholder="Country name" />
+            <input type="text" placeholder="Capital" />
+            <input type="text" placeholder="Flag icon" />
+            <input type="text" placeholder="Continent" />
+            <button>Add Country</button>
+          </fieldset>
         </form>
       </section>
       <ul>{renderCountryList()}</ul>

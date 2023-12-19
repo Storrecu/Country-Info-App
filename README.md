@@ -26,7 +26,7 @@ En este ejercicio se han dividido las tareas a realizar en 2 partes:
 7. Añadir estilos al proyecto.
 
 ## Visualización del proyecto: 
-Puedes consultar y verificar todo esto pinchando en el enlace: http://beta.adalab.es/modulo-3-evaluacion-intermedia-Storrecu/
+Puedes consultar y verificar todo esto pinchando en el enlace: https://storrecu.github.io/Country-Info-App/
 
 ## Teconologías usadas: 
 
